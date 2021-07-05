@@ -4,6 +4,7 @@ import re
 import requests
 from bs4 import BeautifulSoup as bs
 import sys
+import random
 #-------------------------------------------------------------------#
 #------Desenvolvido por Lorena Buriti e Ana Beatriz Tavares---------#
 #-------------------------------------------------------------------#
@@ -24,9 +25,9 @@ while inicio == "Sim" :
      denovo = input('Deseja retornar ao menu? (Sim/Não)')
     elif nav =="2":
      soup = bs(page.content, 'html.parser')
-     aEles = soup.findAll('img')
-     # texts = '\n'.join(i.text for i in aEles if i.text != '')
-     print(aEles)
+     for link in soup.find_all('img'):
+      print(link.get('src'))
+     #print ('\n'.join(i. for i in link if i.jpg != ''))
      denovo = input('Deseja retornar ao menu? (Sim/Não)')
     elif nav =="3":
      soup = bs(page.content, 'html.parser')
@@ -36,9 +37,8 @@ while inicio == "Sim" :
      denovo = input('Deseja retornar ao menu? (Sim/Não)')
     elif nav =="4":
      soup = bs(page.content, 'html.parser')
-     aEles = soup.findAll('li', class_='toclevel-1')
-     texts = '\n'.join(i.text for i in aEles if i.text != '')
-     print(texts)
+     for link in soup.find_all('a'):
+      print(link.get('href','wiki'))
      denovo = input('Deseja retornar ao menu? (Sim/Não)') 
     else :
      nav = None
